@@ -61,25 +61,19 @@ def Stockname(request):
             # process the data in form.cleaned_data as required
             stockname = "WIKI/" + str(form.cleaned_data['your_name'])
             startdate = str(form.cleaned_data['start_date'])
-            #stockname2 = "WIKI/" + str(form.cleaned_data['your_name2'])
-            #startdate2 = str(form.cleaned_data['start_date2'])
+            stockname2 = "WIKI/" + str(form.cleaned_data['your_name2'])
+            startdate2 = str(form.cleaned_data['start_date2'])
             
-            #stockinfo = quandl.get_table("ZACKS/FC", ticker=str(stockname))
+            stockinfo = quandl.get_table("ZACKS/FC", ticker=str(stockname))
             
             stockindicator1 = buy_sell_indicator(stock_daily(stockname, startdate), stockname)
-            #stockindicator2 = buy_sell_indicator(stock_daily(stockname2, startdate2), stockname2)
+            stockindicator2 = buy_sell_indicator(stock_daily(stockname2, startdate2), stockname2)
             
             #print(stockindicator)
             
             #Worked: HttpResponseRedirect('stock/stockindicator/')
             #Workded HttpResponse(stockname, content_type="text/plain"), return variables within the same page. 
             return stockindicator1
-        
-        elif form.is_valid():
-            stockname2 = "WIKI/" + str(form.cleaned_data['your_name2'])
-            startdate2 = str(form.cleaned_data['start_date2'])
-            stockindicator2 = buy_sell_indicator(stock_daily(stockname2, startdate2), stockname2)
-            return stockindicator2
 
     # if a GET (or any other method) we'll create a blank form
     else:

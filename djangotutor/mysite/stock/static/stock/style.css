@@ -9,11 +9,14 @@ li a {
 }
 
 
+div.lighter
+
 form{
     
 	width:500px;
 	margin:0 auto;
 }
+
 input { 
 	border-radius:15px; 
 	-moz-border-radius:15px; 
@@ -40,9 +43,45 @@ input[type=button], input[type=button]:hover {
 
 
 
+div.image {
+  /* The background image must be 800px wide */
+  max-width: 800px;
+}
+
+figure.bg {
+  padding-top: 10%;  /* slope */
+  height: 120px;  /* start height */
+
+  background-image: url(http://voormedia.com/examples/amsterdam.jpg);
+  background-size: cover;
+  -moz-background-size: cover;  /* Firefox 3.6 */
+  background-position: center;  /* Internet Explorer 7/8 */
+}
+
 
 
 /*
+.image {
+  background-image: url("images/background.gif");
+    background-color: #cccccc;
+    background-size:cover;
+}
+
+.image img {
+  background:url("images/background.gif");
+  width: 100%;
+  display: block;
+  position: absolute;
+  z-index: 50;
+}
+
+
+
+
+
+background-image: url("images/background.gif");
+background:url("images/background.gif");
+
 body {
 font-family: "Verdana", Geneva, sans-serif;
     background-image: url("img_tree.gif"), url("img_flwr.gif");

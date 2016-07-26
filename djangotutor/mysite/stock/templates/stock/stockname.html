@@ -1,0 +1,39 @@
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'stock/style.css' %}" />
+
+<p>Template: stockname.html; Data Source: Quandl</p>
+
+
+<div class="lighter">
+
+<form action='/stock/stockname/' method='post'>{% csrf_token %}
+
+{{form.as_p}}
+
+<input type='submit' value='Submit' />
+</form>
+
+</div>
+
+<!--
+
+https://paulund.co.uk/how-to-create-pretty-search-forms
+
+your_name = forms.CharField(label='Stock Symbol:', max_length=100, initial= "DATA")
+    start_date = forms.DateTimeField(label='Analysis Start Date:', initial="2016-06-01")
+
+
+<p><label for="id_subject">Subject:</label>
+    <input id="id_subject" type="text" name="subject" maxlength="100" /></p>
+
+
+<form action="/stock/stockname/" method="post">
+    {% csrf_token %}
+    <label for="your_name">Stock Symbol: </label>
+    <input id="your_name" type="text" name="your_name">
+    <label for="start_date">Start Date: </label>
+    <input id="start_date" type="text" name="start_Date">
+    <input type="submit" value="OK">
+</form>
+
+-->

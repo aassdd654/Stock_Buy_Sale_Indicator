@@ -86,11 +86,11 @@ def Stockname(request):
             
             
             #worked: new_im = Image.open("stock/static/stock/images/background.gif")
-            new_im = Image.new('RGB', (1600, 1200))
+            new_im = Image.new('RGB', (1800, 1400), 'white')
             new_im.paste(stockindicator1, (0,0))
-            new_im.paste(stockindicator2, (0,600))
-            new_im.paste(stockindicator3, (800,0))
-            new_im.paste(stockindicator4, (800,600))
+            new_im.paste(stockindicator2, (0,700))
+            new_im.paste(stockindicator3, (900,0))
+            new_im.paste(stockindicator4, (900,700))
             response=HttpResponse(content_type='image/png')
             new_im.save(response, format='png')
             
@@ -334,12 +334,15 @@ def buy_sell_indicator(stock_daily, stock_name):
     #print()
     ax2 = ax1.twinx()
     ax1.plot(x_axis, y1_axis, color='indianRed')
-    ax1.set_xlabel('Date Count'+ stock_name)
-    ax1.set_ylabel('Close Price'+ stock_name, color ='indianRed')
+    
+    stock_id = str(stock_name)[5:]
+    
+    ax1.set_xlabel(stock_id+' Date Count')
+    ax1.set_ylabel('Close Price '+stock_id, color ='indianRed')
     
     ax2.bar(x_axis, y2_axis, width=0.35, color='steelblue', align='center', alpha=0.3)
     #ax2.plot(x_axis, y2_axis, 'steelblue')
-    ax2.set_ylabel('Volume', color='steelblue')
+    ax2.set_ylabel('Volume '+stock_id, color='steelblue')
     
     #TEST on Graph Y3_Axis [int...int]
     #convert [int...int] to [0, 0, 0, 0, 0, 0, 0, 0, 0, int, 0, 0, 0, 0, 0, 0, 0, 0, 0, ...int]

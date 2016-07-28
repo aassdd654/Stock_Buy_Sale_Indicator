@@ -6,8 +6,10 @@ class NameForm(forms.Form):
     start_date = forms.DateTimeField(label='Analysis Start Date:', widget=forms.TextInput(attrs={'placeholder': '2016-06-01'}))
     your_name2 = forms.CharField(label='Stock Symbol:', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'AAPL'}))
     start_date2 = forms.DateTimeField(label='Analysis Start Date:', widget=forms.TextInput(attrs={'placeholder': '2016-06-01'}))
-    
-    
+    your_name3 = forms.CharField(label='Stock Symbol:', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'GILD'}))
+    start_date3 = forms.DateTimeField(label='Analysis Start Date:', widget=forms.TextInput(attrs={'placeholder': '2016-06-01'}))
+    your_name4 = forms.CharField(label='Stock Symbol:', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'DIS'}))
+    start_date4 = forms.DateTimeField(label='Analysis Start Date:', widget=forms.TextInput(attrs={'placeholder': '2016-06-01'}))
 #class NameForm(forms.Form):
 #   your_name = forms.CharField(label='Your name', max_length=100)
 # tank = forms.IntegerField(widget=forms.HiddenInput(), initial=123)

@@ -27,12 +27,18 @@ import numpy as np
 import matplotlib.cm as cm
 
 from django.http import HttpResponse
+import sys
+from PIL import Image
+import io
+
+
 
 ##################################### Django.Form
 
 from .forms import NameForm
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
+from django.shortcuts import render_to_response
 
 #################################### Page: http://localhost:8000/stock/
 
@@ -63,17 +69,52 @@ def Stockname(request):
             startdate = str(form.cleaned_data['start_date'])
             stockname2 = "WIKI/" + str(form.cleaned_data['your_name2'])
             startdate2 = str(form.cleaned_data['start_date2'])
+            stockname3 = "WIKI/" + str(form.cleaned_data['your_name3'])
+            startdate3 = str(form.cleaned_data['start_date3'])
+            stockname4 = "WIKI/" + str(form.cleaned_data['your_name4'])
+            startdate4 = str(form.cleaned_data['start_date4'])
             
-            stockinfo = quandl.get_table("ZACKS/FC", ticker=str(stockname))
+            
+            #stockinfo = quandl.get_table("ZACKS/FC", ticker=str(stockname))
             
             stockindicator1 = buy_sell_indicator(stock_daily(stockname, startdate), stockname)
+            #print(stockindicator1)
             stockindicator2 = buy_sell_indicator(stock_daily(stockname2, startdate2), stockname2)
+            stockindicator3 = buy_sell_indicator(stock_daily(stockname3, startdate3), stockname3)
+            #print(stockindicator1)
+            stockindicator4 = buy_sell_indicator(stock_daily(stockname4, startdate4), stockname4)
+            
+            
+            #worked: new_im = Image.open("stock/static/stock/images/background.gif")
+            new_im = Image.new('RGB', (1600, 1200))
+            new_im.paste(stockindicator1, (0,0))
+            new_im.paste(stockindicator2, (0,600))
+            new_im.paste(stockindicator3, (800,0))
+            new_im.paste(stockindicator4, (800,600))
+            response=HttpResponse(content_type='image/png')
+            new_im.save(response, format='png')
+            
+            
+            #worked: 
+            #response=HttpResponse(content_type='image/png')
+            #worked: 
+            #fig.savefig(response, format='png')
+  
+            
+            
+            #stockindicator3 = 
             
             #print(stockindicator)
             
             #Worked: HttpResponseRedirect('stock/stockindicator/')
-            #Workded HttpResponse(stockname, content_type="text/plain"), return variables within the same page. 
-            return stockindicator1
+            #Worked return variables within the same page.
+            #return HttpResponse(stockname, content_type="text/plain")
+            #worked: 
+            #return stockindicator1
+            #return render(stockindicator1, 'stock/stockname.html', content_type='image/png')
+            #return render_to_response('stock/stockname.html')
+            #return HttpResponse(stockindicator1, content_type="image/png")
+            return response
 
     # if a GET (or any other method) we'll create a blank form
     else:
@@ -293,8 +334,8 @@ def buy_sell_indicator(stock_daily, stock_name):
     #print()
     ax2 = ax1.twinx()
     ax1.plot(x_axis, y1_axis, color='indianRed')
-    ax1.set_xlabel('Date Count')
-    ax1.set_ylabel('Close Price', color ='indianRed')
+    ax1.set_xlabel('Date Count'+ stock_name)
+    ax1.set_ylabel('Close Price'+ stock_name, color ='indianRed')
     
     ax2.bar(x_axis, y2_axis, width=0.35, color='steelblue', align='center', alpha=0.3)
     #ax2.plot(x_axis, y2_axis, 'steelblue')
@@ -316,10 +357,23 @@ def buy_sell_indicator(stock_daily, stock_name):
     
     #plt.show()
     # return a image to httpresponse
-    response=HttpResponse(content_type='image/png')
-    fig.savefig(response, format='png')
+    # Render(request, template_name, context=None, context_instance=_context_instance_undefined, content_type=None, status=None, current_app=_current_app_undefined, dirs=_dirs_undefined, using=None)
+    # savefig(fname, dpi=None, facecolor='w', edgecolor='w',orientation='portrait', papertype=None, format=None, transparent=False, bbox_inches=None, pad_inches=0.1,frameon=None)
     
-    return response
+    
+    #worked: 
+    #response=HttpResponse(content_type='image/png')
+    #worked: 
+    #fig.savefig(response, format='png')
+    #return response
+    buf = io.BytesIO()
+    fig.savefig(buf, format='png')
+    buf.seek(0)
+    im = Image.open(buf)
+    #im.show()
+    #buf.close()
+    return im
+
 
 #############################################Input Variables + Run the function. 
     

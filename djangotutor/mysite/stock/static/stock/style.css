@@ -41,22 +41,21 @@ input[type=button], input[type=button]:hover {
     text-align: center;
 }
 
-
-
+/*
 div.image {
-  /* The background image must be 800px wide */
-  max-width: 800px;
+   The background image must be 800px wide */ 
+/* max-width: 800px;
 }
 
 figure.bg {
   padding-top: 10%;  /* slope */
-  height: 120px;  /* start height */
+  /*height: 120px;  /* start height */
 
-  background-image: url(http://voormedia.com/examples/amsterdam.jpg);
+/* background-image: url();
   background-size: cover;
   -moz-background-size: cover;  /* Firefox 3.6 */
-  background-position: center;  /* Internet Explorer 7/8 */
-}
+/* background-position: center;  /* Internet Explorer 7/8 */
+
 
 
 
@@ -89,5 +88,7 @@ font-family: "Verdana", Geneva, sans-serif;
 }> 
 
 background: white url("images/wave.jpg") no-repeat right bottom; 
-    background-size: 100%;*/
+    background-size: 100%;
+
+*/
 

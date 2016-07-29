@@ -1,45 +1,74 @@
 {% load staticfiles %}
-<link rel="stylesheet" type="text/css" href="{% static 'stock/style.css' %}" />
+{% load bootstrap3 %}
 
-<p>Template: stockname.html; Data Source: Quandl</p>
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'stock/style.css' %}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript">var switchTo5x=true;</script>
+    <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+    <script type="text/javascript">stLight.options({publisher: "48952996-13d3-49f3-9854-e6438041a4b3", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
+    <meta property="og:description" content="" />
+    {% if bootstrap == 3 %}
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 
-<div class="lighter">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <title>Boostrap 3 django-datetime-widget demo</title>
+    {% else %}
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/2.3.2/css/bootstrap.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <title>Stock Indicator</title>
+    {% endif %}
+
+    {% if form %}
+    {{ form.media }}
+    {% endif %}
     
-<form action='/stock/stockname/' method='post'>{% csrf_token %}
-{{form.as_p}}
-<input type='submit' value='OK' />
-</form>
-    
+</head>
+<body>
+
+<div class="container">
+    <div class="header"> 
+        <ul style="padding-right:60px" class="nav nav-pills pull-right">
+          <li><a href="/stock/stockindicator/">Theory</a></li>
+          <li {% if bootstrap == 3 %} class="active"{% endif %}><a href="/model_form_v3/">Contact</a></li>
+        </ul>
+        <h3 class="text-muted">Stock Buy-Sell Indicator</h3>
+    </div>
+    <div id="form-demo" class="row-field">
+        {% if form %}
+        <form id="Stock Information" action="/stock/stockname/" method="POST" class="form-group">
+        {% csrf_token %}
+        {{ form.as_table }}
+        <br/>
+        <input id="submit" type="submit" value="OK" class="btn">
+        </form>
+        {% endif %}
+        {% if datetime %}
+        {{ datetime.date_time }}
+        {% endif %}
+    </div>
+
+
 </div>
+</body>
+</html>
+
+
 
 <!--
-<div class="image">
-  <figure class="bg"></figure>
-</div>
+Reference From:
+https://github.com/asaglimbeni/django-datetime-widget/blob/master/dateTimeExample/formexample/templates/example/example.html
 -->
 
 
 
-<!--
 
-https://paulund.co.uk/how-to-create-pretty-search-forms
-
-your_name = forms.CharField(label='Stock Symbol:', max_length=100, initial= "DATA")
-    start_date = forms.DateTimeField(label='Analysis Start Date:', initial="2016-06-01")
-
-
-<p><label for="id_subject">Subject:</label>
-    <input id="id_subject" type="text" name="subject" maxlength="100" /></p>
-
-
-<form action="/stock/stockname/" method="post">
-    {% csrf_token %}
-    <label for="your_name">Stock Symbol: </label>
-    <input id="your_name" type="text" name="your_name">
-    <label for="start_date">Start Date: </label>
-    <input id="start_date" type="text" name="start_Date">
-    <input type="submit" value="OK">
-</form>
-
--->

@@ -65,8 +65,8 @@ def Stockname(request):
         # check whether it's valid:
         if form.is_valid():
             # process the data in form.cleaned_data as required
-            stockname = "WIKI/" + str(form.cleaned_data['your_name'])
-            startdate = str(form.cleaned_data['start_date'])
+            stockname1 = "WIKI/" + str(form.cleaned_data['your_name1'])
+            startdate1 = str(form.cleaned_data['start_date1'])
             stockname2 = "WIKI/" + str(form.cleaned_data['your_name2'])
             startdate2 = str(form.cleaned_data['start_date2'])
             stockname3 = "WIKI/" + str(form.cleaned_data['your_name3'])
@@ -77,7 +77,7 @@ def Stockname(request):
             
             #stockinfo = quandl.get_table("ZACKS/FC", ticker=str(stockname))
             
-            stockindicator1 = buy_sell_indicator(stock_daily(stockname, startdate), stockname)
+            stockindicator1 = buy_sell_indicator(stock_daily(stockname1, startdate1), stockname1)
             #print(stockindicator1)
             stockindicator2 = buy_sell_indicator(stock_daily(stockname2, startdate2), stockname2)
             stockindicator3 = buy_sell_indicator(stock_daily(stockname3, startdate3), stockname3)
@@ -85,36 +85,28 @@ def Stockname(request):
             stockindicator4 = buy_sell_indicator(stock_daily(stockname4, startdate4), stockname4)
             
             
-            #worked: new_im = Image.open("stock/static/stock/images/background.gif")
+            #worked: 
+            #new_im = Image.open("stock/static/stock/images/background.gif")
+            #worked: 
             new_im = Image.new('RGB', (1800, 1400), 'white')
             new_im.paste(stockindicator1, (0,0))
             new_im.paste(stockindicator2, (0,700))
             new_im.paste(stockindicator3, (900,0))
             new_im.paste(stockindicator4, (900,700))
+            
+            #test: response = io.BytesIO()
+            #worked: 
             response=HttpResponse(content_type='image/png')
+            #test: 
             new_im.save(response, format='png')
-            
-            
+            #test: response.seek(0)
+            #test: im = Image.open(reponse)
+
+            #test: return render(im, 'stock/stockname.html', content_type='image/png')
+           
             #worked: 
-            #response=HttpResponse(content_type='image/png')
-            #worked: 
-            #fig.savefig(response, format='png')
-  
-            
-            
-            #stockindicator3 = 
-            
-            #print(stockindicator)
-            
-            #Worked: HttpResponseRedirect('stock/stockindicator/')
-            #Worked return variables within the same page.
-            #return HttpResponse(stockname, content_type="text/plain")
-            #worked: 
-            #return stockindicator1
-            #return render(stockindicator1, 'stock/stockname.html', content_type='image/png')
-            #return render_to_response('stock/stockname.html')
-            #return HttpResponse(stockindicator1, content_type="image/png")
             return response
+            
 
     # if a GET (or any other method) we'll create a blank form
     else:

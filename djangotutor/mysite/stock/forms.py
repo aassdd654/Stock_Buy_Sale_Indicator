@@ -1,20 +1,52 @@
 from django import forms
+from .models import Stock
 import datetime
+from datetimewidget.widgets import DateTimeWidget, DateWidget, TimeWidget
+#See more at: http://django-datetime-widget.asaglimbeni.me/model_form_v2/#sthash.FuAOMeU1.dpuf
+# https://github.com/asaglimbeni/django-datetime-widget
+
+#from bootstrap3_datepicker.fields import DatePickerField
+from bootstrap3_datepicker.widgets import DatePickerInput
 
 class NameForm(forms.Form):
-    your_name = forms.CharField(label='Stock Symbol:', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'DATA'}))
-    start_date = forms.DateTimeField(label='Analysis Start Date:', widget=forms.TextInput(attrs={'placeholder': '2016-06-01'}))
-    your_name2 = forms.CharField(label='Stock Symbol:', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'AAPL'}))
-    start_date2 = forms.DateTimeField(label='Analysis Start Date:', widget=forms.TextInput(attrs={'placeholder': '2016-06-01'}))
-    your_name3 = forms.CharField(label='Stock Symbol:', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'GILD'}))
-    start_date3 = forms.DateTimeField(label='Analysis Start Date:', widget=forms.TextInput(attrs={'placeholder': '2016-06-01'}))
-    your_name4 = forms.CharField(label='Stock Symbol:', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'DIS'}))
-    start_date4 = forms.DateTimeField(label='Analysis Start Date:', widget=forms.TextInput(attrs={'placeholder': '2016-06-01'}))
+    your_name1 = forms.CharField(label='Stock Symbol:', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'Stock 1'}))
+    start_date1 = forms.DateField(label='Analysis Start Date:',
+                                 widget=DateWidget(usel10n=True, bootstrap_version=2),
+                                initial="2016-06-01")
+    
+    
+    
+    your_name2 = forms.CharField(label='Stock Symbol:', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'Stock 2'}))
+    start_date2 = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=2))
+    your_name3 = forms.CharField(label='Stock Symbol:', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'Stock 3'}))
+    start_date3 = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=2))
+    your_name4 = forms.CharField(label='Stock Symbol:', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'Stock 4'}))
+    start_date4 = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=2))
+    
+    #worked:
+    #start_date = forms.DateField(label='Analysis Start Date:', 
+    #                             input_formats=["%Y-%m-%d"],
+    #                            widget=DatePickerInput(format="%Y-%m-%d",
+    #                                                     attrs={'placeholder': '2016-06-01'},
+    #                                                     options={"minViewMode": "months"}))
+        
 #class NameForm(forms.Form):
-#   your_name = forms.CharField(label='Your name', max_length=100)
-# tank = forms.IntegerField(widget=forms.HiddenInput(), initial=123)
-#http://localhost:8888/edit/djangotutor/mysite/stock/forms.py#
+    #your_name = forms.CharField(label='Stock Symbol:', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'DATA'}))
+    #worked:
+    #start_date = forms.DateTimeField(label='Analysis Start Date:', widget=forms.TextInput(attrs={'placeholder': '2016-06-01'}))
+    #test:
+    #start_date = forms.DateTimeField(widget=SplitSelectDateTimeWidget(hour_step=2, minute_step=15, second_step=30, twelve_hr=True, years=[2008,2009,2010], attrs={'placeholder': '2016-06-01'}))
+    
+    #worked.
+    #your_name2 = forms.CharField(label='Stock Symbol:', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'AAPL'}))
+    #start_date2 = forms.DateTimeField(label='Analysis Start Date:', widget=forms.TextInput(attrs={'placeholder': '2016-06-01'}))
+    #your_name3 = forms.CharField(label='Stock Symbol:', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'GILD'}))
+    #start_date3 = forms.DateTimeField(label='Analysis Start Date:', widget=forms.TextInput(attrs={'placeholder': '2016-06-01'}))
+    #your_name4 = forms.CharField(label='Stock Symbol:', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'DIS'}))
+    #start_date4 = forms.DateTimeField(label='Analysis Start Date:', widget=forms.TextInput(attrs={'placeholder': '2016-06-01'}))
 
+    
+    
 #class NameForm(forms.Form):
 #   your_name = forms.CharField(label='Stock Symbol:', max_length=100, widget=forms.TextInput(attrs={'placeholder': 'DATA'}))
 #  start_date = forms.DateTimeField(label='Analysis Start Date:', widget=forms.TextInput(attrs={'placeholder': '2016-06-01'}))

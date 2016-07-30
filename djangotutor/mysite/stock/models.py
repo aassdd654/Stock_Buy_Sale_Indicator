@@ -8,10 +8,6 @@ from django.utils import timezone
 
     
 class Stock(models.Model):
-    
-    #worked:
-    start_date = models.DateField()
-    #worked:
     def __str__(self):
         return self.stock_text
     

@@ -66,23 +66,23 @@ def Stockname(request):
         if form.is_valid():
             # process the data in form.cleaned_data as required
             stockname1 = "WIKI/" + str(form.cleaned_data['your_name1'])
-            startdate1 = str(form.cleaned_data['start_date1'])
+            startdate = str(form.cleaned_data['start_date'])
             stockname2 = "WIKI/" + str(form.cleaned_data['your_name2'])
-            startdate2 = str(form.cleaned_data['start_date2'])
+            
             stockname3 = "WIKI/" + str(form.cleaned_data['your_name3'])
-            startdate3 = str(form.cleaned_data['start_date3'])
+           
             stockname4 = "WIKI/" + str(form.cleaned_data['your_name4'])
-            startdate4 = str(form.cleaned_data['start_date4'])
+            #startdate4 = str(form.cleaned_data['start_date'])
             
             
             #stockinfo = quandl.get_table("ZACKS/FC", ticker=str(stockname))
             
-            stockindicator1 = buy_sell_indicator(stock_daily(stockname1, startdate1), stockname1)
+            stockindicator1 = buy_sell_indicator(stock_daily(stockname1, startdate), stockname1)
             #print(stockindicator1)
-            stockindicator2 = buy_sell_indicator(stock_daily(stockname2, startdate2), stockname2)
-            stockindicator3 = buy_sell_indicator(stock_daily(stockname3, startdate3), stockname3)
+            stockindicator2 = buy_sell_indicator(stock_daily(stockname2, startdate), stockname2)
+            stockindicator3 = buy_sell_indicator(stock_daily(stockname3, startdate), stockname3)
             #print(stockindicator1)
-            stockindicator4 = buy_sell_indicator(stock_daily(stockname4, startdate4), stockname4)
+            stockindicator4 = buy_sell_indicator(stock_daily(stockname4, startdate), stockname4)
             
             
             #worked: 

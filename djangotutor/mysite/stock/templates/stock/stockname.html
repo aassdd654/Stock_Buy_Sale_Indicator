@@ -10,7 +10,7 @@
     <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
     <script type="text/javascript">stLight.options({publisher: "48952996-13d3-49f3-9854-e6438041a4b3", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
     <meta property="og:description" content="" />
-    {% if bootstrap == 3 %}
+        {% if bootstrap == 3 %}
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 
@@ -25,8 +25,9 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/2.3.2/css/bootstrap.min.css">
     <!-- Latest compiled and minified JavaScript -->
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
-    <title>Stock Indicator</title>
+    <title>Boostrap 2 django-datetime-widget demo</title>
     {% endif %}
+
 
     {% if form %}
     {{ form.media }}
@@ -38,10 +39,13 @@
 <div class="container">
     <div class="header"> 
         <ul style="padding-right:60px" class="nav nav-pills pull-right">
+          <br/>  
           <li><a href="/stock/stockindicator/">Theory</a></li>
-          <li {% if bootstrap == 3 %} class="active"{% endif %}><a href="/model_form_v3/">Contact</a></li>
+          <li><a href="/stock/stockindicator/">Contact</a></li>
         </ul>
+        <br/>
         <h3 class="text-muted">Stock Buy-Sell Indicator</h3>
+        <br/>
     </div>
     <div id="form-demo" class="row-field">
         {% if form %}

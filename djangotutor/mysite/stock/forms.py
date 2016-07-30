@@ -14,6 +14,13 @@ STOCKS = (('', 'Select Stock'),
           ('AAPL', 'Apple Inc'),
           ('DIS', 'Disney'),
           ('GILD', 'Gilead Science'),
+          ('TSLA', 'Tesla Motors'),
+          ('ILMN', 'Illumina'),
+          ('HD', 'Home Depot'),
+          ('AMZN', 'Amazon'),
+          ('IRBT', 'iRobot'),
+          ('EL', 'Estee Lauder'),
+          ('GOOG', 'Google'),
         )
 
 

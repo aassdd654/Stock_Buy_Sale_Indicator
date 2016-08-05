@@ -9,7 +9,134 @@ from datetimewidget.widgets import DateTimeWidget, DateWidget, TimeWidget
 from bootstrap3_datepicker.widgets import DatePickerInput
 
 #STOCKS = (("Stock Symbol", "Stock Comany Name"))
-STOCKS = (('', 'Select Stock'),
+
+####################################################################################################
+
+# get the stocks list from CSV. 
+
+
+from cs103 import *
+from collections import namedtuple
+import matplotlib.pyplot as pyplot
+import matplotlib.dates as dates
+import matplotlib.pyplot as plt
+import numpy as np
+import matplotlib.cm as cm
+from django.core.files import File
+
+###############################
+
+# Use WIKI-datasets-codes.csv to test
+
+
+
+# Source Data sample
+# 0     1    
+"""
+WIKI/AAPL	Apple Inc (AAPL) Prices, Dividends, Splits and Trading Volume
+WIKI/BXP	Boston Properties Inc. (BXP) Prices, Dividends, Splits and Trading Volume
+WIKI/CMA	Comerica Inc. (CMA) Prices, Dividends, Splits and Trading Volume
+WIKI/COF	Capital One Financial Corp (COF) Prices, Dividends, Splits and Trading Volume
+WIKI/CSX	CSX Corp (CSX) Prices, Dividends, Splits and Trading Volume
+WIKI/CTSH	Cognizant Technology Solutions Corp. (CTSH) Prices, Dividends, Splits and Trading Volume
+WIKI/DFS	Discover Financial Services (DFS) Prices, Dividends, Splits and Trading Volume
+"""
+
+
+################################
+
+# Data Definition - Stock's ID
+
+Stockid = namedtuple("Stockid", ["stockid", "companyname"])
+# Stockid = (str, str)
+# Stockid is the stock information including id and company name
+
+# Example:
+S0 = Stockid('', 'Select Stock')
+S1 = Stockid("WIKI/AAPL", "Apple Inc (AAPL) Prices, Dividends, Splits and Trading Volume")
+S2 = Stockid("WIKI/DATA", "Tableau Software (DATA) Prices, Dividends, Splits and Trading Volume")
+
+
+# Template:
+'''
+def fn_for_Dailytrading(t):
+        return Dailytrading.date
+'''
+
+#################################
+
+#Target data example:
+#STOCKS = (("Stock Symbol", "Stock Comany Name"))
+
+"""
+stockids = (('', 'Select Stock'),
+          ('DATA', 'Tableau'),
+          ('AAPL', 'Apple Inc'),
+        )
+"""
+
+# Data Definition - Stock List
+
+#L1 = [S0, S1, S2...Sn]
+
+# Template:
+'''
+def fn_for_lop(periods):
+    # acc is ...
+    acc = ...
+    for s in los:
+        ... s acc
+    return acc
+'''
+
+#################################
+# Function: READ From File: 
+
+
+def make_stockids(lines):
+    """
+    [str, str] 
+    # template to return Stockid
+    """
+    # "stockid", "companyname"
+    # ('WIKI/FURX', '"Furiex Pharmaceuticals')
+    # convert from 'WIKI/FURX' to FURX
+    
+    stockid = str(lines[0])[5:]
+    
+    # convert the compnay name
+    companyname = str(lines[1])[:]
+    
+    return (stockid, companyname)
+
+
+ 
+def read(file):
+    '''
+    # str -> [Dailytrading]
+    # convert the file to a list of Dailytrading
+    '''
+    # f = open('/path/to/hello.world', 'w')
+    f = open(file, 'r')
+    # moves past the first line
+    #file_readline(f)
+    # stockids is [Stockid]
+    stockids = []
+    # lines is a list of (the list of 2 attributes: "id", "companyname")
+    line = []
+    count = 0
+    
+    for line in f:
+        # [S1, ...Sn]
+        stockids = stockids + [make_stockids(line.split(","))]
+    return stockids
+
+STOCKIDS = read('/Users/chuli/Stock_Buy_Sale_Indicator/djangotutor/mysite/stock/WIKI-datasets-codes.csv')
+
+
+#########################################################################################
+
+STOCKS = [('', 'Select Stock'),
           ('DATA', 'Tableau'),
           ('AAPL', 'Apple Inc'),
           ('DIS', 'Disney'),
@@ -21,10 +148,25 @@ STOCKS = (('', 'Select Stock'),
           ('IRBT', 'iRobot'),
           ('EL', 'Estee Lauder'),
           ('GOOG', 'Google'),
-        )
+        ]
 
 
+
+###########################################################################
 class NameForm(forms.Form):
+    #worked: checks
+    #stocklist = forms.CharField(label="Stock Symbol",
+                   #              max_length=25, widget=forms.CheckboxSelectMultiple(choices=STOCKIDS,
+                                                 #   ),
+                                 #)
+    
+    #Worked
+    stocklist = forms.CharField(label="Stock Symbol",
+                                max_length=25,
+                                widget=forms.Select(choices=STOCKIDS,
+                                                    ),
+                              )
+    
     #worked:
     auto_id = False
     your_name1 = forms.CharField(label="Stock Symbol",

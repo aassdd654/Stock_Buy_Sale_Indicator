@@ -25,7 +25,7 @@ SECRET_KEY = 'esq97vag03=-gsga6%x81c45vupq()u_ra-z7b+_f#$2l9ieir'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['lichuprojects.azurewebsites.net', 'localhost', '127.0.0.1']
 
 
 # Application definition

@@ -18,7 +18,7 @@ quandl.ApiConfig.api_key = 'SvgAJczTKtEuU9Fg1xJz'
 quandl.ApiConfig.api_version = '2015-04-09'
 
 ##################################### Indicator Calculation
-from cs103 import *
+#from cs103 import *
 from collections import namedtuple
 import matplotlib.pyplot as pyplot
 import matplotlib.dates as dates
@@ -125,7 +125,7 @@ def Stockindicator(request):
 
 
 import quandl
-from cs103 import *
+#from cs103 import *
 from collections import namedtuple
 import matplotlib.pyplot as pyplot
 import matplotlib.dates as dates

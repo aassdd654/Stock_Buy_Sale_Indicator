@@ -31,7 +31,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'bootstrap3_datepicker',
     'bootstrap3',
     'datetimewidget',
     'django_extensions',

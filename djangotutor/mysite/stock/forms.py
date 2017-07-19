@@ -6,7 +6,7 @@ from datetimewidget.widgets import DateTimeWidget, DateWidget, TimeWidget
 # https://github.com/asaglimbeni/django-datetime-widget
 
 #from bootstrap3_datepicker.fields import DatePickerField
-from bootstrap3_datepicker.widgets import DatePickerInput
+#from bootstrap3_datepicker.widgets import DatePickerInput
 
 #STOCKS = (("Stock Symbol", "Stock Comany Name"))
 
@@ -15,7 +15,7 @@ from bootstrap3_datepicker.widgets import DatePickerInput
 # get the stocks list from CSV. 
 
 
-from cs103 import *
+#from cs103 import *
 from collections import namedtuple
 import matplotlib.pyplot as pyplot
 import matplotlib.dates as dates
@@ -131,7 +131,7 @@ def read(file):
         stockids = stockids + [make_stockids(line.split(","))]
     return stockids
 
-STOCKIDS = read('/Users/chuli/Stock_Buy_Sale_Indicator/djangotutor/mysite/stock/WIKI-datasets-codes.csv')
+STOCKIDS = read('/Users/chuli/Desktop/stock_project/stock-buy-sale-indicator/djangotutor/mysite/stock/WIKI-datasets-codes.csv')
 
 
 #########################################################################################
